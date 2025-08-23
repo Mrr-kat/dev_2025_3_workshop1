@@ -165,8 +165,9 @@ class Conversion:
                 self.texto_a_morse()
             elif(opcion == "10"):
                 self.morse_a_texto()
-            elif(opcion == "11"):
-                return 0
+            elif(opcion == "0"):
+                print("¡Hasta luego!")
+                break
             else:
                 print("Opcion no valida")
 
