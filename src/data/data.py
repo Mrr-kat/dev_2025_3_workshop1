@@ -84,12 +84,12 @@ class Data:
         return transpuesta
 
 
-# ========== MENÚ PRINCIPAL ==========
+
 def menu():
     data = Data()
     
     while True:
-        print("\n===== MENÚ DE FUNCIONES =====")
+        print("\n ===== Menu de funciones =====")
         print("1. Invertir lista")
         print("2. Buscar elemento en lista")
         print("3. Eliminar duplicados de una lista")
@@ -102,67 +102,90 @@ def menu():
         print("10. Transponer matriz")
         print("0. Salir")
         
-        opcion = input("\nSelecciona una opción: ")
+        opcion = input("\nSelecciona una opcion: ")
         
         if opcion == "1":
+            print("\n==================================\n")
             lista = input("Ingresa lista separada por comas: ").split(",")
             print("Invertida:", data.invertir_lista(lista))
+            print("\n==================================")
         
         elif opcion == "2":
+            print("\n==================================\n")
             lista = input("Ingresa lista separada por comas: ").split(",")
             elemento = input("Elemento a buscar: ")
             print("Índice:", data.buscar_elemento(lista, elemento))
+            print("\n==================================")
         
         elif opcion == "3":
+            print("\n==================================\n")
             lista = input("Ingresa lista separada por comas: ").split(",")
             print("Sin duplicados:", data.eliminar_duplicados(lista))
+            print("\n==================================")
         
         elif opcion == "4":
+            print("\n==================================\n")
             lista1 = input("Lista 1 ordenada (comas): ").split(",")
             lista2 = input("Lista 2 ordenada (comas): ").split(",")
             print("Merge ordenado:", data.merge_ordenado(lista1, lista2))
+            print("\n==================================")
         
         elif opcion == "5":
+            print("\n==================================\n")
             lista = input("Ingresa lista separada por comas: ").split(",")
             k = int(input("Número de rotaciones: "))
             print("Rotada:", data.rotar_lista(lista, k))
+            print("\n==================================")
         
         elif opcion == "6":
+            print("\n==================================\n")
             lista = list(map(int, input("Ingresa lista de enteros (1 a n) separada por comas: ").split(",")))
             print("Número faltante:", data.encuentra_numero_faltante(lista))
+            print("\n==================================")
         
         elif opcion == "7":
+            print("\n==================================\n")
             conjunto1 = input("Conjunto 1 (comas): ").split(",")
             conjunto2 = input("Conjunto 2 (comas): ").split(",")
             print("¿Es subconjunto?:", data.es_subconjunto(conjunto1, conjunto2))
+            print("\n==================================")
         
         elif opcion == "8":
+            print("\n==================================\n")
             pila = data.implementar_pila()
             pila["push"]("A")
             pila["push"]("B")
             print("Peek:", pila["peek"]())
             print("Pop:", pila["pop"]())
             print("¿Está vacía?:", pila["is_empty"]())
+            print("\n==================================")
         
         elif opcion == "9":
+            print("\n==================================\n")
             cola = data.implementar_cola()
             cola["enqueue"]("A")
             cola["enqueue"]("B")
             print("Peek:", cola["peek"]())
             print("Dequeue:", cola["dequeue"]())
             print("¿Está vacía?:", cola["is_empty"]())
+            print("\n==================================")
         
         elif opcion == "10":
+            print("\n==================================\n")
             filas = int(input("Número de filas: "))
             matriz = []
             for i in range(filas):
                 fila = input(f"Fila {i+1} (comas): ").split(",")
                 matriz.append(fila)
             print("Transpuesta:", data.matriz_transpuesta(matriz))
+            print("\n==================================")
         
         elif opcion == "0":
+            print("\n==================================\n")
             print("¡Hasta luego!")
+            print("\n==================================")
             break
+            
         
         else:
             print("Opción no válida, intenta de nuevo.")
