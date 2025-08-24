@@ -1,153 +1,185 @@
 class Strings:
-    """
-    Clase con métodos para manipulación y operaciones con cadenas de texto.
-    Incluye funciones para manipular, validar y transformar strings.
-    """
     
     def es_palindromo(self, texto):
-        """
-        Verifica si una cadena es un palíndromo (se lee igual de izquierda a derecha y viceversa).
-        
-        Args:
-            texto (str): Cadena a verificar
-            
-        Returns:
-            bool: True si es palíndromo, False en caso contrario
-        """
-        pass
-    
+        texto = texto.lower().replace(" ", "")
+        return texto == texto[::-1]
+
     def invertir_cadena(self, texto):
-        """
-        Invierte una cadena de texto sin usar slicing ni reversed().
-        
-        Args:
-            texto (str): Cadena a invertir
-            
-        Returns:
-            str: Cadena invertida
-        """
-        pass
-    
+        invertida = ""
+        for char in texto:
+            invertida = char + invertida
+        return invertida
+
     def contar_vocales(self, texto):
-        """
-        Cuenta el número de vocales en una cadena.
-        
-        Args:
-            texto (str): Cadena para contar vocales
-            
-        Returns:
-            int: Número de vocales en la cadena
-        """
-        pass
-    
+        vocales = "aeiouáéíóú"
+        contador = 0
+        for char in texto.lower():
+            if char in vocales:
+                contador += 1
+        return contador
+
     def contar_consonantes(self, texto):
-        """
-        Cuenta el número de consonantes en una cadena.
-        
-        Args:
-            texto (str): Cadena para contar consonantes
-            
-        Returns:
-            int: Número de consonantes en la cadena
-        """
-        pass
-    
+        vocales = "aeiouáéíóú"
+        contador = 0
+        for char in texto.lower():
+            if char.isalpha() and char not in vocales:
+                contador += 1
+        return contador
+
     def es_anagrama(self, texto1, texto2):
-        """
-        Verifica si dos cadenas son anagramas (contienen exactamente los mismos caracteres).
-        
-        Args:
-            texto1 (str): Primera cadena
-            texto2 (str): Segunda cadena
-            
-        Returns:
-            bool: True si son anagramas, False en caso contrario
-        """
-        pass
-    
+        return sorted(texto1.replace(" ", "").lower()) == sorted(texto2.replace(" ", "").lower())
+
     def contar_palabras(self, texto):
-        """
-        Cuenta el número de palabras en una cadena.
-        
-        Args:
-            texto (str): Cadena para contar palabras
-            
-        Returns:
-            int: Número de palabras en la cadena
-        """
-        pass
-    
+        palabras = texto.split()
+        return len(palabras)
+
     def palabras_mayus(self, texto):
-        """
-        Pon en Mayuscula la primera letra de cada palabra en una cadena.
-        
-        Args:
-            texto (str): Cadena
-            
-        Returns:
-            str: Cadena con la primera letra de cada palabra en mayúscula
-        """
-        pass
-    
+        palabras = texto.split()
+        return " ".join([p.capitalize() for p in palabras])
+
     def eliminar_espacios_duplicados(self, texto):
-        """
-        Elimina espacios duplicados en una cadena.
-        
-        Args:
-            texto (str): Cadena con posibles espacios duplicados
-            
-        Returns:
-            str: Cadena sin espacios duplicados
-        """
-        pass
-    
+        palabras = texto.split()
+        return " ".join(palabras)
+
     def es_numero_entero(self, texto):
-        """
-        Verifica si una cadena representa un número entero sin usar isdigit().
-        
-        Args:
-            texto (str): Cadena a verificar
-            
-        Returns:
-            bool: True si la cadena representa un número entero, False en caso contrario
-        """
-        pass
-    
+        if texto.startswith("-"):
+            texto = texto[1:]
+        if not texto:
+            return False
+        for char in texto:
+            if char < "0" or char > "9":
+                return False
+        return True
+
     def cifrar_cesar(self, texto, desplazamiento):
-        """
-        Aplica el cifrado César a una cadena de texto.
-        
-        Args:
-            texto (str): Cadena a cifrar
-            desplazamiento (int): Número de posiciones a desplazar cada letra
-            
-        Returns:
-            str: Cadena cifrada
-        """
-        pass
-    
+        resultado = ""
+        for char in texto:
+            if char.isalpha():
+                base = ord('A') if char.isupper() else ord('a')
+                resultado += chr((ord(char) - base + desplazamiento) % 26 + base)
+            else:
+                resultado += char
+        return resultado
+
     def descifrar_cesar(self, texto, desplazamiento):
-        """
-        Descifra una cadena cifrada con el método César.
-        
-        Args:
-            texto (str): Cadena cifrada
-            desplazamiento (int): Número de posiciones que se desplazó cada letra
-            
-        Returns:
-            str: Cadena descifrada
-        """
-        pass
-    
+        return self.cifrar_cesar(texto, -desplazamiento)
+
     def encontrar_subcadena(self, texto, subcadena):
-        """
-        Encuentra todas las posiciones de una subcadena en un texto sin usar find() o index().
+        posiciones = []
+        for i in range(len(texto) - len(subcadena) + 1):
+            if texto[i:i+len(subcadena)] == subcadena:
+                posiciones.append(i)
+        return posiciones
+
+
+
+def menu():
+    strings = Strings()
+
+    while True:
+        print("\n ===== Menu de funciones clase str =====")
+        print("1. Verificar si es palíndromo")
+        print("2. Invertir cadena")
+        print("3. Contar vocales")
+        print("4. Contar consonantes")
+        print("5. Verificar anagrama")
+        print("6. Contar palabras")
+        print("7. Poner en mayúscula la primera letra de cada palabra")
+        print("8. Eliminar espacios duplicados")
+        print("9. Verificar si es número entero")
+        print("10. Cifrar con César")
+        print("11. Descifrar con César")
+        print("12. Encontrar subcadena")
+        print("0. Salir")
         
-        Args:
-            texto (str): Cadena principal
-            subcadena (str): Subcadena a buscar
-            
-        Returns:
-            list: Lista con las posiciones iniciales de cada ocurrencia
-        """
-        pass
+        opcion = input("\nSeleccione una opción: ")
+
+        if opcion == "1":
+            print("\n==================================\n")
+            texto = input("Ingrese un texto: ")
+            print("¿Es palíndromo?:", strings.es_palindromo(texto))
+            print("\n==================================")
+
+        elif opcion == "2":
+            print("\n==================================\n")
+            texto = input("Ingrese un texto: ")
+            print("Invertida:", strings.invertir_cadena(texto))
+            print("\n==================================")
+
+        elif opcion == "3":
+            print("\n==================================\n")
+            texto = input("Ingrese un texto: ")
+            print("Número de vocales:", strings.contar_vocales(texto))
+            print("\n==================================")
+
+        elif opcion == "4":
+            print("\n==================================\n")
+            texto = input("Ingrese un texto: ")
+            print("Número de consonantes:", strings.contar_consonantes(texto))
+            print("\n==================================")
+
+        elif opcion == "5":
+            print("\n==================================\n")
+            t1 = input("Ingrese primer texto: ")
+            t2 = input("Ingrese segundo texto: ")
+            print("¿Son anagramas?:", strings.es_anagrama(t1, t2))
+            print("\n==================================")
+
+        elif opcion == "6":
+            print("\n==================================\n")
+            texto = input("Ingrese un texto: ")
+            print("Número de palabras:", strings.contar_palabras(texto))
+            print("\n==================================")
+
+        elif opcion == "7":
+            print("\n==================================\n")
+            texto = input("Ingrese un texto: ")
+            print("Texto transformado:", strings.palabras_mayus(texto))
+            print("\n==================================")
+
+        elif opcion == "8":
+            print("\n==================================\n")
+            texto = input("Ingrese un texto: ")
+            print("Texto sin espacios duplicados:", strings.eliminar_espacios_duplicados(texto))
+            print("\n==================================")
+
+        elif opcion == "9":
+            print("\n==================================\n")
+            texto = input("Ingrese un texto: ")
+            print("¿Es número entero?:", strings.es_numero_entero(texto))
+            print("\n==================================")
+
+        elif opcion == "10":
+            print("\n==================================\n")
+            texto = input("Ingrese un texto: ")
+            desplazamiento = int(input("Ingrese desplazamiento: "))
+            print("Texto cifrado:", strings.cifrar_cesar(texto, desplazamiento))
+            print("\n==================================")
+
+        elif opcion == "11":
+            print("\n==================================\n")
+            texto = input("Ingrese un texto cifrado: ")
+            desplazamiento = int(input("Ingrese desplazamiento usado: "))
+            print("Texto descifrado:", strings.descifrar_cesar(texto, desplazamiento))
+            print("\n==================================")
+
+        elif opcion == "12":
+            print("\n==================================\n")
+            texto = input("Ingrese el texto: ")
+            subcadena = input("Ingrese la subcadena: ")
+            print("Posiciones encontradas:", strings.encontrar_subcadena(texto, subcadena))
+            print("\n==================================")
+
+        elif opcion == "0":
+            print("\n==================================\n")
+            print("¡Hasta luego!")
+            print("\n==================================")
+            break
+
+        else:
+            print("Opción no válida, intente de nuevo.")
+
+
+
+if __name__ == "_main_":
+    menu()
