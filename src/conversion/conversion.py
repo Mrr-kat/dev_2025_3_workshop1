@@ -130,7 +130,7 @@ class Conversion:
     
     def menu(self):
         while True:
-            print("\n --- conversor ---")
+            print("\n ===== Menu conversor =====")
             print("1. convertir de celsius a fahrenheit")
             print("2. convertir de fahrenheit a celsius")
             print("3. convertir de metros a pies")
