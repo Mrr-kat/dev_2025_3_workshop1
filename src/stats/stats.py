@@ -1,95 +1,104 @@
 class Stats:
     def promedio(self, numeros):
-        """
-        Calcula la media aritmética de una lista de números.
-        
-        Args:
-            numeros (list): Lista de números
-            
-        Returns:
-            float: La media aritmética de los números
-            
-        Ejemplo:
-            promedio([1, 2, 3, 4, 5]) -> 3.0
-        """
-        pass
-    
+        return sum(numeros) / len(numeros)
+
     def mediana(self, numeros):
-        """
-        Encuentra el valor mediano de una lista de números.
-        Para listas con número par de elementos, retorna el promedio de los dos valores centrales.
-        
-        Args:
-            numeros (list): Lista de números
-            
-        Returns:
-            float: El valor mediano
-            
-        Ejemplo:
-            mediana([1, 2, 3, 4, 5]) -> 3.0
-            mediana([1, 2, 3, 4]) -> 2.5
-        """
-        pass
-    
+        numeros = sorted(numeros)
+        n = len(numeros)
+        mitad = n // 2
+        if n % 2 == 0:
+            return (numeros[mitad - 1] + numeros[mitad]) / 2
+        else:
+            return numeros[mitad]
+
     def moda(self, numeros):
-        """
-        Encuentra el valor que aparece con mayor frecuencia en la lista.
-        Si hay empate, retorna el primer valor encontrado.
-        
-        Args:
-            numeros (list): Lista de números
-            
-        Returns:
-            number: El valor más frecuente
-            
-        Ejemplo:
-            moda([1, 2, 2, 3, 3, 3]) -> 3
-        """
-        pass
-    
+        conteos = {}
+        for num in numeros:
+            conteos[num] = conteos.get(num, 0) + 1
+        return max(conteos, key=conteos.get)
+
     def desviacion_estandar(self, numeros):
-        """
-        Calcula la desviación estándar de una lista de números.
-        Usa la fórmula de desviación estándar poblacional.
-        
-        Args:
-            numeros (list): Lista de números
-            
-        Returns:
-            float: La desviación estándar
-            
-        Ejemplo:
-            desviacion_estandar([1, 2, 3, 4, 5]) -> 1.41...
-        """
-        pass
-    
+        media = self.promedio(numeros)
+        suma = sum((x - media) ** 2 for x in numeros)
+        return (suma / len(numeros)) ** 0.5
+
     def varianza(self, numeros):
-        """
-        Calcula la varianza de una lista de números.
-        La varianza es el cuadrado de la desviación estándar.
-        
-        Args:
-            numeros (list): Lista de números
-            
-        Returns:
-            float: La varianza
-            
-        Ejemplo:
-            varianza([1, 2, 3, 4, 5]) -> 2.0
-        """
-        pass
-    
+        media = self.promedio(numeros)
+        suma = sum((x - media) ** 2 for x in numeros)
+        return suma / len(numeros)
+
     def rango(self, numeros):
-        """
-        Calcula el rango (diferencia entre el valor máximo y mínimo).
-        
-        Args:
-            numeros (list): Lista de números
+        return max(numeros) - min(numeros)
+
+def convertir_lista_numeros(entrada):
+    str_a_int = [float(x.strip()) for x in entrada.split(",")]
+    return str_a_int
+
+def menu():
+    stats = Stats()
+    while True:
+        print("\n ===== Menu de Estadísticas =====")
+        print("1. Promedio (Media)")
+        print("2. Mediana")
+        print("3. Moda")
+        print("4. Desviación Estándar")
+        print("5. Varianza")
+        print("6. Rango")
+        print("0. Salir")
+
+        opcion = input("\nIngrese una opción: ")
+
+        if opcion == "1":
+            print("\n==================================\n")
+            entrada = input("Ingrese números separados por comas: ")
+            numeros = convertir_lista_numeros(entrada)
+            print("Promedio: ", stats.promedio(numeros))
+            print("\n==================================")
             
-        Returns:
-            number: La diferencia entre max y min
+        elif opcion == "2":
+            print("\n==================================\n")
+            entrada = input("Ingrese números separados por comas: ")
+            numeros = convertir_lista_numeros(entrada)
+            print("Mediana: ", stats.mediana(numeros))
+            print("\n==================================")
             
-        Ejemplo:
-            rango([1, 5, 3, 9, 2]) -> 8
-        """
-        pass
+        elif opcion == "3":
+            print("\n==================================\n")
+            entrada = input("Ingrese números separados por comas: ")
+            numeros = convertir_lista_numeros(entrada)
+            print("Moda: ", stats.moda(numeros))
+            print("\n==================================")
+            
+        elif opcion == "4":
+            print("\n==================================\n")
+            entrada = input("Ingrese números separados por comas: ")
+            numeros = convertir_lista_numeros(entrada)
+            print("Desviación Estándar: ", stats.desviacion_estandar(numeros))
+            print("\n==================================")
+            
+        elif opcion == "5":
+            print("\n==================================\n")
+            entrada = input("Ingrese números separados por comas: ")
+            numeros = convertir_lista_numeros(entrada)
+            print("Varianza: ", stats.varianza(numeros))
+            print("\n==================================")
+            
+        elif opcion == "6":
+            print("\n==================================\n")
+            entrada = input("Ingrese números separados por comas: ")
+            numeros = convertir_lista_numeros(entrada)
+            print("Rango: ", stats.rango(numeros))
+            print("\n==================================")
+            
+        elif opcion == "0":
+            print("\n==================================\n")
+            print("¡Hasta luego!")
+            print("\n==================================")
+            break
+            
+        else:
+            print("Opción no válida, intenta de nuevo.")
+
+
+if __name__ == "__main__":
+    menu()
