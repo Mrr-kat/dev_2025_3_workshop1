@@ -69,7 +69,7 @@ class Conversion:
 
     def romano_a_decimal(self):
         print("\n==================================")
-        romano = input("Ingrese un número en romano: ").upper()
+        romano = input("Ingrese un numero en romano: ").upper()
         valores = {
             "I": 1, "V": 5, "X": 10, "L": 50,
             "C": 100, "D": 500, "M": 1000
